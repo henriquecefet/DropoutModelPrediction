@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Previsão de Evasão Universitária</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/BSI/style.css') }}">
+
+</head>
+<body>
+    <div id="app">
+        <h1>Previsão de Evasão de Alunos de Sistemas de Informação</h1>
+        <p>
+            A inteligência artificial pode ser uma ferramenta poderosa para prever a evasão de alunos em cursos universitários. Utilizando dados de rendimento acadêmico, como o Coeficiente de Rendimento (CR), modelos de machine learning podem identificar padrões e ajudar a prever quais alunos têm maior risco de evadir.
+        </p>
+        <p>
+            Abaixo estão links para diferentes modelos que utilizam CR de diferentes períodos para realizar essas previsões:
+        </p>
+        <div v-html="modelos[0].html"></div>
+        <div v-html="modelos[1].html"></div>
+        <div v-html="modelos[2].html"></div>
+        <div v-html="modelos[3].html"></div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/BSI/script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Form</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/EngProd/model1GPA/style.css') }}">
+</head>
+<body>
+    <div id="app">
+        <h1>Prediction Form</h1>
+        <form @submit.prevent="submitForm">
+            <label for="ingresso_atual">Ingresso Atual:</label>
+            <select id="ingresso_atual" v-model="formData.ingresso_atual">
+                <option value="nao-cotistas">Não-cotistas</option>
+                <option value="cotistas">Cotistas</option>
+            </select>
+            
+            <label for="SEXO">SEXO:</label>
+            <select id="SEXO" v-model="formData.SEXO">
+                <option value="M">M</option>
+                <option value="F">F</option>
+            </select>
+            
+            <label for="IsTheyBusinessperson">IsTheyBusinessperson:</label>
+            <select id="IsTheyBusinessperson" v-model="formData.IsTheyBusinessperson">
+                <option value="Entrepreneur">Businessperson</option>
+                <option value="Nonentrepreneur"> Not businessperson</option>
+            </select>
+                
+            <label for="Categoria">Categoria:</label>
+            <select id="Categoria" v-model="formData.Categoria">
+                <option value="Fundou uma empresa depois da graduação">Fundou uma empresa depois da graduação</option>
+                <option value="Não é empresário">Não é empresário</option>
+                <option value="Fundou uma empresa durante a graduação">Fundou uma empresa durante a graduação</option>
+                <option value="Fundou uma empresa antes de entrar na graduação">Fundou uma empresa antes de entrar na graduação</option>
+            </select>
+
+            
+            <label for="GPA1">GPA1:</label>
+            <input type="text" id="GPA1" v-model="formData.GPA1">
+            
+
+            <label for="CR_ATUAL">Acumulated GPA:</label>
+            <input type="text" id="CR_ATUAL" v-model="formData.CR_ATUAL">
+            
+            <label for="grade_programming1">grade_programming1:</label>
+            <input type="text" id="grade_programming1" v-model="formData.grade_programming1">
+                   
+            <label for="grade_basic_math">grade_basic_math:</label>
+            <input type="text" id="grade_basic_math" v-model="formData.grade_basic_math">
+            
+            <label for="employee_student">employee_student:</label>
+            <select id="employee_student" v-model="formData.employee_student">
+                <option value="non-employee student">Non-employee student</option>
+                <option value="employee student">Employee student</option>
+            </select>
+            
+
+            <button type="submit">Enviar</button>
+        </form>
+        <div  class="prediction-container" v-if="prediction !== null">
+            <h2>Resultado da Previsão:</h2>
+            <div v-html="prediction"></div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/EngProd/model1GPA/script.js') }}"></script>
+</body>
+</html>
