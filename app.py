@@ -163,7 +163,7 @@ def bsi_model2GPA():
 def bsi_model2gpa_predict():
     try:
         # Load the model
-        pipeline = joblib.load('model4GPA_model_and_encoders/BSI/model3GPA/model2GPA.pkl')
+        pipeline = joblib.load('model4GPA_model_and_encoders/BSI/model2GPA/model2GPA.pkl')
 
         # Carregar os LabelEncoders
         label_encoders = {
@@ -309,7 +309,7 @@ def mat_model4gpa_predict():
         }
 
         # Define as colunas numéricas e categóricas
-        categorical_columns = ['ingresso_atual', 'FINAL_STATUS', 'Categoria', 'IsTheyBusinessperson', 'SEXO', 'employee_student']
+        categorical_columns = ['ingresso_atual', 'Categoria', 'IsTheyBusinessperson', 'SEXO', 'employee_student']
         numerical_columns = ['CR_ATUAL',  'GPA1', 'GPA2', 'GPA3', 'GPA4', 'grade_programming1', "grade_enviroment", 
                     'grade_math_foundation', 'grade_analytic_geometry']
         # Get the JSON data from the request
@@ -374,7 +374,7 @@ def mat_model3gpa_predict():
         }
 
         # Define as colunas numéricas e categóricas
-        categorical_columns = ['ingresso_atual', 'FINAL_STATUS', 'Categoria', 'IsTheyBusinessperson', 'SEXO', 'employee_student']
+        categorical_columns = ['ingresso_atual', 'Categoria', 'IsTheyBusinessperson', 'SEXO', 'employee_student']
         numerical_columns = ['CR_ATUAL', 'GPA1', 'GPA2', 'GPA3', 'grade_programming1', "grade_enviroment", 
                     'grade_math_foundation', 'grade_analytic_geometry']
         # Get the JSON data from the request
@@ -441,7 +441,7 @@ def mat_model2gpa_predict():
         }
 
         # Define as colunas numéricas e categóricas
-        categorical_columns = ['ingresso_atual', 'FINAL_STATUS', 'Categoria', 'IsTheyBusinessperson', 'SEXO', 'employee_student']
+        categorical_columns = ['ingresso_atual', 'Categoria', 'IsTheyBusinessperson', 'SEXO', 'employee_student']
         numerical_columns = ['GPA1', 'GPA2', 'grade_programming1', "grade_enviroment", 
                     'grade_math_foundation', 'grade_analytic_geometry']
         data = request.json
@@ -509,7 +509,7 @@ def mat_model1gpa_predict():
         }
 
         # Define as colunas numéricas e categóricas
-        categorical_columns = ['ingresso_atual', 'FINAL_STATUS', 'Categoria', 'IsTheyBusinessperson', 'SEXO', 'employee_student']
+        categorical_columns = ['ingresso_atual', 'Categoria', 'IsTheyBusinessperson', 'SEXO', 'employee_student']
         numerical_columns = ['CR_ATUAL', 'GPA1', 'grade_programming1', "grade_enviroment", 
                     'grade_math_foundation', 'grade_analytic_geometry']
         # Get the JSON data from the request
