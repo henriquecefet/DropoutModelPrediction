@@ -22,6 +22,9 @@ new Vue({
         prediction: "<p>Make a prediction</P>"
     },
     methods: {
+        replaceComma(field) {
+            this.formData[field] = this.formData[field].replace(',', '.');
+          },
         submitForm() {
             if(IsTheyBusinessperson.value === "Nonentrepreneur"){
                 if(Categoria.value != "Não é empresário"){

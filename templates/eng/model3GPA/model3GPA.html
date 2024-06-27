@@ -40,31 +40,33 @@
 
             
             <label for="GPA1">GPA1:</label>
-            <input type="text" id="GPA1" placeholder="Enter a grade between 0.00 and 10.00"  pattern="^(10|\d(\.\d{1,2})?)$" title="Enter a grade between 0 and 10" required v-model="formData.GPA1">
+            <input type="text" id="GPA1"  @input="replaceComma('GPA1')" placeholder="Enter a grade between 0.00 and 10.00" pattern="^(10|\d(\.\d{1,2})?)$" title="Enter a grade between 0 and 10" required v-model="formData.GPA1">
             
             <label for="GPA2">GPA2:</label>
-            <input type="text" id="GPA2" placeholder="Enter a grade between 0.00 and 10.00" pattern="^(10|\d(\.\d{1,2})?)$" title="Enter a grade between 0 and 10" required v-model="formData.GPA2">
+            <input type="text" id="GPA2"  @input="replaceComma('GPA2')" placeholder="Enter a grade between 0.00 and 10.00" pattern="^(10|\d(\.\d{1,2})?)$" title="Enter a grade between 0 and 10" required v-model="formData.GPA2">
             
             <label for="GPA3">GPA3:</label>
-            <input type="text" id="GPA3" placeholder="Enter a grade between 0.00 and 10.00" pattern="^(10|\d(\.\d{1,2})?)$" title="Enter a grade between 0 and 10" required v-model="formData.GPA3">
+            <input type="text" id="GPA3"  @input="replaceComma('GPA3')" placeholder="Enter a grade between 0.00 and 10.00" pattern="^(10|\d(\.\d{1,2})?)$" title="Enter a grade between 0 and 10" required v-model="formData.GPA3">
 
             <label for="CR_ATUAL">Acumulated GPA:</label>
-            <input type="text" id="CR_ATUAL" placeholder="Enter a grade between 0.00 and 10.00" pattern="^(10|\d(\.\d{1,2})?)$" title="Enter a grade between 0 and 10" required v-model="formData.CR_ATUAL">
+            <input type="text" id="CR_ATUAL"  @input="replaceComma('CR_ATUAL')" placeholder="Enter a grade between 0.00 and 10.00" pattern="^(10|\d(\.\d{1,2})?)$" title="Enter a grade between 0 and 10" required v-model="formData.CR_ATUAL">
+            
             
             <label for="grade_programming1">grade_programming1:</label>
-            <input type="text" id="grade_programming1" placeholder="Enter a grade between 0.00 and 10.00" pattern="^(10|\d(\.\d{1,2})?)$" title="Enter a grade between 0 and 10" required v-model="formData.grade_programming1">
+            <input type="text" id="grade_programming1" @input="replaceComma('grade_programming1')" placeholder="Enter a grade between 0.00 and 10.00" pattern="^(10|\d(\.\d{1,2})?)$" title="Enter a grade between 0 and 10" required v-model="formData.grade_programming1">
             
             <label for="grade_calculus1">grade_calculus1:</label>
-            <input type="text" id="grade_calculus1" placeholder="Enter a grade between 0.00 and 10.00" pattern="^(10|\d(\.\d{1,2})?)$" title="Enter a grade between 0 and 10" required v-model="formData.grade_calculus1">
+            <input type="text" id="grade_calculus1" @input="replaceComma('grade_calculus1')" placeholder="Enter a grade between 0.00 and 10.00" pattern="^(10|\d(\.\d{1,2})?)$" title="Enter a grade between 0 and 10" required v-model="formData.grade_calculus1">
             
             <label for="grade_linear_algebra">grade_linear_algebra:</label>
-            <input type="text" id="grade_linear_algebra" placeholder="Enter a grade between 0.00 and 10.00" pattern="^(10|\d(\.\d{1,2})?)$" title="Enter a grade between 0 and 10" required v-model="formData.grade_linear_algebra">
+            <input type="text" id="grade_linear_algebra" @input="replaceComma('grade_linear_algebra')" placeholder="Enter a grade between 0.00 and 10.00" pattern="^(10|\d(\.\d{1,2})?)$" title="Enter a grade between 0 and 10" required v-model="formData.grade_linear_algebra">
             
             <label for="grade_eng_introduction">grade_eng_introduction:</label>
-            <input type="text" id="grade_eng_introduction" placeholder="Enter a grade between 0.00 and 10.00" pattern="^(10|\d(\.\d{1,2})?)$" title="Enter a grade between 0 and 10" required v-model="formData.grade_eng_introduction">
+            <input type="text" id="grade_eng_introduction" @input="replaceComma('grade_eng_introduction')" placeholder="Enter a grade between 0.00 and 10.00" pattern="^(10|\d(\.\d{1,2})?)$" title="Enter a grade between 0 and 10" required v-model="formData.grade_eng_introduction">
 
             <label for="grade_calculus0">grade_calculus0:</label>
-            <input type="text" id="grade_calculus0" placeholder="Enter a grade between 0.00 and 10.00" pattern="^(10|\d(\.\d{1,2})?)$" title="Enter a grade between 0 and 10" required v-model="formData.grade_calculus0">
+            <input type="text" id="grade_calculus0" @input="replaceComma('grade_calculus0')" placeholder="Enter a grade between 0.00 and 10.00" pattern="^(10|\d(\.\d{1,2})?)$" title="Enter a grade between 0 and 10" required v-model="formData.grade_calculus0">
+
 
             
             <label for="employee_student">employee_student:</label>
