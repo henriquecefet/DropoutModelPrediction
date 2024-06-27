@@ -14,7 +14,9 @@ body {
 h1 {
     text-align: center;
 }
-
+h2 {
+    text-align: center;
+}
 form {
     max-width: 400px;
     margin: 20px auto;

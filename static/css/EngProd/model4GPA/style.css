@@ -14,7 +14,9 @@ body {
 h1 {
     text-align: center;
 }
-
+h2 {
+    text-align: center;
+}
 form {
     max-width: 400px;
     margin: 20px auto;
@@ -31,14 +33,16 @@ label {
 
 input[type="text"],
 button {
-    width: 100%;
+    width: calc(100% - 20px); /* Ajuste a largura total subtraindo a margem horizontal */
     padding: 10px;
-    margin-bottom: 10px;
+    margin: 0 10px 10px 10px; /* Adicione margem horizontal aqui */
     border-radius: 5px;
     border: 1px solid #ccc;
 }
 
 button {
+    width: calc(100% - 20px); /* Ajuste a largura total subtraindo a margem horizontal */
+    margin: 0 10px 10px 10px; /* Adicione margem horizontal aqui */
     background-color: #007bff;
     color: #fff;
     border: none;
@@ -73,6 +77,8 @@ button:hover {
     color: #333;
 }
 select {
+    width: calc(100% - 20px); /* Ajuste a largura total subtraindo a margem horizontal */
+    margin: 0 10px 10px 10px; /* Adicione margem horizontal aqui */
     padding: 10px;
     margin-top: 10px;
     border: 1px solid #ccc;
