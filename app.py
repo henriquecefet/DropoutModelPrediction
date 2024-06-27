@@ -6,6 +6,7 @@ from sklearn.ensemble import HistGradientBoostingClassifier
 import pandas as pd
 import joblib
 import traceback
+from werkzeug.utils import quote as url_quote
 
 app = Flask(__name__, static_folder='static')
 
