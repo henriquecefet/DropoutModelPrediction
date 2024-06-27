@@ -23,6 +23,18 @@ new Vue({
     },
     methods: {
         submitForm() {
+            if(IsTheyBusinessperson.value === "Nonentrepreneur"){
+                if(Categoria.value != "Não é empresário"){
+                    alert("Preencha com coerência IsTheyBusinessperson e Categoria");
+                    return;
+                }
+            }
+            if(Categoria.value === "Não é empresário"){
+                if(IsTheyBusinessperson.value != "Nonentrepreneur"){
+                    alert("Preencha com coerência IsTheyBusinessperson e Categoria");
+                    return;
+                }
+            }
             fetch('http://127.0.0.1:5000/ccet/model2GPA/predict', { // Use o endereço correto da sua API aqui
                 method: 'POST',
                 headers: {
