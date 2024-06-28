@@ -12,11 +12,13 @@ new Vue({
             GPA4: '',
             CR_ATUAL: '',
             grade_programming1: '', 
+            grade_geometry1: '',
+            grade_calculus1: '',
             grade_enviroment: '',     
             grade_math_foundation: '', 
             grade_analytic_geometry: '',
             employee_student: ''
-        },
+        }, 
         prediction: "<p>Make a prediction</P>"
     },
     methods: {

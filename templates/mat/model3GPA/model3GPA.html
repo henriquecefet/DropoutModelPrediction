@@ -64,7 +64,13 @@
             <label for="grade_analytic_geometry">grade_analytic_geometry:</label>
             <input type="text" id="grade_analytic_geometry" @input="replaceComma('grade_analytic_geometry')" placeholder="Enter a grade between 0.00 and 10.00" pattern="^(10|\d(\.\d{1,2})?)$" title="Enter a grade between 0 and 10" required v-model="formData.grade_analytic_geometry">
 
-            
+            <label for="grade_geometry1">grade_geometry1:</label>
+            <input type="text" id="grade_geometry1" @input="replaceComma('grade_geometry1')" placeholder="Enter a grade between 0.00 and 10.00" pattern="^(10|\d(\.\d{1,2})?)$" title="Enter a grade between 0 and 10" required v-model="formData.grade_geometry1">
+
+            <label for="grade_calculus1">grade_calculus1:</label>
+            <input type="text" id="grade_calculus1" @input="replaceComma('grade_calculus1')" placeholder="Enter a grade between 0.00 and 10.00" pattern="^(10|\d(\.\d{1,2})?)$" title="Enter a grade between 0 and 10" required v-model="formData.grade_calculus1">
+
+ 
             <label for="employee_student">employee_student:</label>
             <select id="employee_student"  required v-model="formData.employee_student">
                 <option value="non-employee student">Non-employee student</option>
