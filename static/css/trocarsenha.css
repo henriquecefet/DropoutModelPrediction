@@ -32,6 +32,7 @@ label {
 }
 
 input[type="text"],
+input[type="password"],
 button {
     width: calc(100% - 20px); /* Ajuste a largura total subtraindo a margem horizontal */
     padding: 10px;
@@ -105,4 +106,3 @@ footer a {
 footer a:hover {
     text-decoration: underline;
 }
-

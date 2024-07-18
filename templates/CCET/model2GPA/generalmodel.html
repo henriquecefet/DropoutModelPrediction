@@ -72,7 +72,10 @@
             <div v-html="prediction"></div>
         </div>
     </div>
-
+    <footer id="footer">
+        {{ email }}
+        <a href="/trocarsenha">Trocar a senha</a>
+    </footer>
     <script type="text/javascript" src="{{ url_for('static', filename='js/CCET/model2GPA/script.js') }}"></script>
 </body>
 </html>

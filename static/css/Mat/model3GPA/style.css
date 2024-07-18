@@ -86,3 +86,23 @@ select {
     font-size: 16px;
     width: 100%; /* Faz com que o select ocupe toda a largura disponível */
 }
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+footer a {
+    color: #ffffff;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+

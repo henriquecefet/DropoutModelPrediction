@@ -22,6 +22,10 @@
         <div v-html="modelos[3].html"></div>
 
     </div>
+    <footer id="footer">
+        {{ email }}
+        <a href="/trocarsenha">Trocar a senha</a>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/EngProd/script.js') }}"></script>
 </body>
