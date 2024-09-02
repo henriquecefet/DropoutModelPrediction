@@ -14,9 +14,9 @@ app = Flask(__name__, static_folder='static')
 app.secret_key = 'AAjANDKd4I'
 
 db_config = {
-    'user': '@@@@@@@@@@@@',
-    'password': '@@@@@@@@@@@',
-    'host': '@@@@@@@@@',  # Apenas o endereço IP ou nome do host
+    'user': 'root',
+    'password': 'ursopanda',
+    'host': '127.0.0.1',  # Apenas o endereço IP ou nome do host
     'port': 3306,  # Especificação separada da porta
     'database': 'sistema_predicao_evasao'
 }
@@ -118,31 +118,31 @@ def bsi_model4gpa_predict():
         categorical_columns = ['ingresso_atual', 'IsTheyBusinessperson', 'Categoria', 'SEXO', 'employee_student']
         # Get the JSON data from the request
         data = request.json
-
+        
         # Create a DataFrame from the JSON data
         df = pd.DataFrame(data, index=[0])
-
+        
         # Apply label encoding to categorical columns
         for name, le in label_encoders.items():
             try:
                 df[name] = le.transform(df[name])
             except ValueError as e:
                 return jsonify({'error': f"Unknown category in column '{name}': {str(e)}"}), 400
-
+        
         # Convert all non-categorical columns to float
         for column in numerical_columns:
             df[column] = df[column].astype(float)
-
+        
         # Print column types for debugging
         for column in df.columns:
             print(f"Column '{column}' has type: {type(df[column].iloc[0])}")
-
+        
         # Select features for prediction
         X = df[numerical_columns + categorical_columns]
-
+        
         # Print the transformed DataFrame for debugging
         print(X)
-
+        
         y_pred = pipeline.predict(X)
         print("-----------------------------------------------------------")
         print(y_pred.tolist())
@@ -154,7 +154,7 @@ def bsi_model4gpa_predict():
         full_error_message = f"{error_message}\nTraceback:\n{traceback_str}"
         print(full_error_message)
         return jsonify(error=full_error_message), 500
-
+    
 #-------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -187,31 +187,31 @@ def bsi_model3gpa_predict():
         numerical_columns = ['CR_ATUAL', 'GPA1', 'GPA2', 'GPA3', 'grade_programming1', 'grade_programming2', 'grade_basic_math', 'grade_calculus1', 'grade_linear_algebra', 'grade_logic']
         # Get the JSON data from the request
         data = request.json
-
+        
         # Create a DataFrame from the JSON data
         df = pd.DataFrame(data, index=[0])
-
+        
         # Apply label encoding to categorical columns
         for name, le in label_encoders.items():
             try:
                 df[name] = le.transform(df[name])
             except ValueError as e:
                 return jsonify({'error': f"Unknown category in column '{name}': {str(e)}"}), 400
-
+        
         # Convert all non-categorical columns to float
         for column in numerical_columns:
             df[column] = df[column].astype(float)
-
+        
         # Print column types for debugging
         for column in df.columns:
             print(f"Column '{column}' has type: {type(df[column].iloc[0])}")
-
+        
         # Select features for prediction
         X = df[numerical_columns + categorical_columns]
-
+        
         # Print the transformed DataFrame for debugging
         print(X)
-
+        
         y_pred = pipeline.predict(X)
         print("-----------------------------------------------------------")
         print(y_pred.tolist())
@@ -258,31 +258,31 @@ def bsi_model2gpa_predict():
         numerical_columns = ['CR_ATUAL', 'GPA1', 'GPA2', 'grade_programming1', 'grade_programming2', 'grade_basic_math', 'grade_calculus1', 'grade_linear_algebra', 'grade_logic']
         # Get the JSON data from the request
         data = request.json
-
+        
         # Create a DataFrame from the JSON data
         df = pd.DataFrame(data, index=[0])
-
+        
         # Apply label encoding to categorical columns
         for name, le in label_encoders.items():
             try:
                 df[name] = le.transform(df[name])
             except ValueError as e:
                 return jsonify({'error': f"Unknown category in column '{name}': {str(e)}"}), 400
-
+        
         # Convert all non-categorical columns to float
         for column in numerical_columns:
             df[column] = df[column].astype(float)
-
+        
         # Print column types for debugging
         for column in df.columns:
             print(f"Column '{column}' has type: {type(df[column].iloc[0])}")
-
+        
         # Select features for prediction
         X = df[numerical_columns + categorical_columns]
-
+        
         # Print the transformed DataFrame for debugging
         print(X)
-
+        
         y_pred = pipeline.predict(X)
         print("-----------------------------------------------------------")
         print(y_pred.tolist())
@@ -331,31 +331,31 @@ def bsi_model1gpa_predict():
         numerical_columns = ['CR_ATUAL', 'GPA1', 'grade_programming1', 'grade_basic_math']
         # Get the JSON data from the request
         data = request.json
-
+        
         # Create a DataFrame from the JSON data
         df = pd.DataFrame(data, index=[0])
-
+        
         # Apply label encoding to categorical columns
         for name, le in label_encoders.items():
             try:
                 df[name] = le.transform(df[name])
             except ValueError as e:
                 return jsonify({'error': f"Unknown category in column '{name}': {str(e)}"}), 400
-
+        
         # Convert all non-categorical columns to float
         for column in numerical_columns:
             df[column] = df[column].astype(float)
-
+        
         # Print column types for debugging
         for column in df.columns:
             print(f"Column '{column}' has type: {type(df[column].iloc[0])}")
-
+        
         # Select features for prediction
         X = df[numerical_columns + categorical_columns]
-
+        
         # Print the transformed DataFrame for debugging
         print(X)
-
+        
         y_pred = pipeline.predict(X)
         print("-----------------------------------------------------------")
         print(y_pred.tolist())
@@ -404,7 +404,7 @@ def mat_model4gpa_predict():
 
         # Define as colunas numéricas e categóricas
         categorical_columns = ['ingresso_atual', 'Categoria', 'IsTheyBusinessperson', 'SEXO', 'employee_student']
-        numerical_columns = ['CR_ATUAL',  'GPA1', 'GPA2', 'GPA3', 'GPA4', 'grade_programming1', "grade_enviroment",
+        numerical_columns = ['CR_ATUAL',  'GPA1', 'GPA2', 'GPA3', 'GPA4', 'grade_programming1', "grade_enviroment", 
                     'grade_math_foundation', 'grade_analytic_geometry', 'grade_geometry1', 'grade_calculus1']
         # Get the JSON data from the request
         data = request.json
@@ -474,7 +474,7 @@ def mat_model3gpa_predict():
 
         # Define as colunas numéricas e categóricas
         categorical_columns = ['ingresso_atual', 'Categoria', 'IsTheyBusinessperson', 'SEXO', 'employee_student']
-        numerical_columns = ['CR_ATUAL', 'GPA1', 'GPA2', 'GPA3', 'grade_programming1', "grade_enviroment",
+        numerical_columns = ['CR_ATUAL', 'GPA1', 'GPA2', 'GPA3', 'grade_programming1', "grade_enviroment", 
                     'grade_math_foundation', 'grade_analytic_geometry', 'grade_geometry1', 'grade_calculus1']
         # Get the JSON data from the request
         data = request.json
@@ -546,7 +546,7 @@ def mat_model2gpa_predict():
 
         # Define as colunas numéricas e categóricas
         categorical_columns = ['ingresso_atual', 'Categoria', 'IsTheyBusinessperson', 'SEXO', 'employee_student']
-        numerical_columns = ['GPA1', 'GPA2', 'grade_programming1', "grade_enviroment",
+        numerical_columns = ['GPA1', 'GPA2', 'grade_programming1', "grade_enviroment", 
                     'grade_math_foundation', 'grade_analytic_geometry', 'grade_geometry1', 'grade_calculus1']
         data = request.json
 
@@ -619,7 +619,7 @@ def mat_model1gpa_predict():
 
         # Define as colunas numéricas e categóricas
         categorical_columns = ['ingresso_atual', 'Categoria', 'IsTheyBusinessperson', 'SEXO', 'employee_student']
-        numerical_columns = ['CR_ATUAL', 'GPA1', 'grade_programming1', "grade_enviroment",
+        numerical_columns = ['CR_ATUAL', 'GPA1', 'grade_programming1', "grade_enviroment", 
                     'grade_math_foundation', 'grade_analytic_geometry']
         # Get the JSON data from the request
         data = request.json
@@ -683,8 +683,8 @@ def mat_model1gpa_predict():
 
 
 
-
-
+    
+    
 ###############################################################################################################################
 @app.route('/ccet')
 def ccet_index():
@@ -710,7 +710,7 @@ def ccet_model4gpa_predict():
     try:
          # Load the model
         pipeline = joblib.load('model4GPA_model_and_encoders/CCET/model4GPA/model4GPA.pkl')
-
+    
         # Carregar os LabelEncoders
         label_encoders = {
             'ingresso_atual': joblib.load('model4GPA_model_and_encoders/CCET/model4GPA/label_encoder_ingresso_atual.pkl'),
@@ -719,14 +719,14 @@ def ccet_model4gpa_predict():
             'SEXO': joblib.load('model4GPA_model_and_encoders/CCET/model4GPA/label_encoder_SEXO.pkl'),
             'employee_student': joblib.load('model4GPA_model_and_encoders/CCET/model4GPA/label_encoder_employee_student.pkl'),
             'NOME_CURSO': joblib.load('model4GPA_model_and_encoders/CCET/model4GPA/label_encoder_Curso.pkl')
-        }
+        }    
 
         # Define as colunas numéricas e categóricas
         numerical_columns = ['CR_ATUAL','GPA1', 'GPA2', 'GPA3', 'GPA4']
         categorical_columns = ['ingresso_atual', 'IsTheyBusinessperson', 'Categoria', 'SEXO', 'employee_student','NOME_CURSO']
         # Get the JSON data from the request
         data = request.json
-
+    
         # Create a DataFrame from the JSON data
         df = pd.DataFrame(data, index=[0])
          # Apply label encoding to categorical columns
@@ -735,23 +735,23 @@ def ccet_model4gpa_predict():
                 df[name] = le.transform(df[name])
             except ValueError as e:
                 print("error Unknown category in column "+name)
-                return jsonify({'error': f"Unknown category in column '{name}': {str(e)}"}), 400
+                return jsonify({'error': f"Unknown category in column '{name}': {str(e)}"}), 400  
         # Convert all non-categorical columns to float
         for column in numerical_columns:
              df[column] = df[column].astype(float)
-
+            
         # Print column types for debugging
         for column in df.columns:
             print(f"Column '{column}' has type: {type(df[column].iloc[0])}")
 
-
+ 
 
         # Select features for prediction
         X = df[numerical_columns + categorical_columns]
-
+            
         # Print the transformed DataFrame for debugging
-
-
+ 
+            
         y_pred = pipeline.predict(X)
         print(y_pred.tolist())
         # Return the predictions as JSON
@@ -777,23 +777,23 @@ def ccet_model3gpa_predict():
     try:
          # Load the model
         pipeline = joblib.load('model4GPA_model_and_encoders/CCET/model3GPA/model3GPA.pkl')
-
+    
         # Carregar os LabelEncoders
-        label_encoders = {
+        label_encoders = {   
             'Categoria': joblib.load('model4GPA_model_and_encoders/CCET/model3GPA/label_encoder_Categoria.pkl'),
             'IsTheyBusinessperson': joblib.load('model4GPA_model_and_encoders/CCET/model3GPA/label_encoder_IsTheyBusinessperson.pkl'),
             'SEXO': joblib.load('model4GPA_model_and_encoders/CCET/model3GPA/label_encoder_SEXO.pkl'),
             'employee_student': joblib.load('model4GPA_model_and_encoders/CCET/model3GPA/label_encoder_employee_student.pkl'),
             'NOME_CURSO': joblib.load('model4GPA_model_and_encoders/CCET/model3GPA/label_encoder_Curso.pkl'),
             'ingresso_atual': joblib.load('model4GPA_model_and_encoders/CCET/model3GPA/label_encoder_ingresso_atual.pkl')
-        }
+        }    
 
         # Define as colunas numéricas e categóricas
         numerical_columns = ['CR_ATUAL','GPA1', 'GPA2', 'GPA3']
         categorical_columns = ['ingresso_atual', 'IsTheyBusinessperson', 'Categoria', 'SEXO', 'employee_student','NOME_CURSO']
         # Get the JSON data from the request
         data = request.json
-
+    
         # Create a DataFrame from the JSON data
         df = pd.DataFrame(data, index=[0])
          # Apply label encoding to categorical columns
@@ -802,23 +802,23 @@ def ccet_model3gpa_predict():
                 df[name] = le.transform(df[name])
             except ValueError as e:
                 print("error Unknown category in column "+name)
-                return jsonify({'error': f"Unknown category in column '{name}': {str(e)}"}), 400
+                return jsonify({'error': f"Unknown category in column '{name}': {str(e)}"}), 400  
         # Convert all non-categorical columns to float
         for column in numerical_columns:
              df[column] = df[column].astype(float)
-
+            
         # Print column types for debugging
         for column in df.columns:
             print(f"Column '{column}' has type: {type(df[column].iloc[0])}")
 
-
+ 
 
         # Select features for prediction
         X = df[numerical_columns + categorical_columns]
-
+            
         # Print the transformed DataFrame for debugging
-
-
+ 
+            
         y_pred = pipeline.predict(X)
         print(y_pred.tolist())
         # Return the predictions as JSON
@@ -844,7 +844,7 @@ def ccet_model2gpa_predict():
     try:
          # Load the model
         pipeline = joblib.load('model4GPA_model_and_encoders/CCET/model2GPA/model2GPA.pkl')
-
+    
         # Carregar os LabelEncoders
         label_encoders = {
             'ingresso_atual': joblib.load('model4GPA_model_and_encoders/CCET/model2GPA/label_encoder_ingresso_atual.pkl'),
@@ -853,14 +853,14 @@ def ccet_model2gpa_predict():
             'SEXO': joblib.load('model4GPA_model_and_encoders/CCET/model2GPA/label_encoder_SEXO.pkl'),
             'employee_student': joblib.load('model4GPA_model_and_encoders/CCET/model2GPA/label_encoder_employee_student.pkl'),
             'NOME_CURSO': joblib.load('model4GPA_model_and_encoders/CCET/model2GPA/label_encoder_Curso.pkl')
-        }
+        }    
 
         # Define as colunas numéricas e categóricas
         numerical_columns = ['CR_ATUAL','GPA1', 'GPA2']
         categorical_columns = ['ingresso_atual', 'IsTheyBusinessperson', 'Categoria', 'SEXO', 'employee_student','NOME_CURSO']
         # Get the JSON data from the request
         data = request.json
-
+    
         # Create a DataFrame from the JSON data
         df = pd.DataFrame(data, index=[0])
          # Apply label encoding to categorical columns
@@ -869,23 +869,23 @@ def ccet_model2gpa_predict():
                 df[name] = le.transform(df[name])
             except ValueError as e:
                 print("error Unknown category in column "+name)
-                return jsonify({'error': f"Unknown category in column '{name}': {str(e)}"}), 400
+                return jsonify({'error': f"Unknown category in column '{name}': {str(e)}"}), 400  
         # Convert all non-categorical columns to float
         for column in numerical_columns:
              df[column] = df[column].astype(float)
-
+            
         # Print column types for debugging
         for column in df.columns:
             print(f"Column '{column}' has type: {type(df[column].iloc[0])}")
 
-
+ 
 
         # Select features for prediction
         X = df[numerical_columns + categorical_columns]
-
+            
         # Print the transformed DataFrame for debugging
-
-
+ 
+            
         y_pred = pipeline.predict(X)
         print(y_pred.tolist())
         # Return the predictions as JSON
@@ -911,7 +911,7 @@ def ccet_model1gpa_predict():
     try:
          # Load the model
         pipeline = joblib.load('model4GPA_model_and_encoders/CCET/model1GPA/model1GPA.pkl')
-
+    
         # Carregar os LabelEncoders
         label_encoders = {
             'ingresso_atual': joblib.load('model4GPA_model_and_encoders/CCET/model1GPA/label_encoder_ingresso_atual.pkl'),
@@ -920,14 +920,14 @@ def ccet_model1gpa_predict():
             'SEXO': joblib.load('model4GPA_model_and_encoders/CCET/model1GPA/label_encoder_SEXO.pkl'),
             'employee_student': joblib.load('model4GPA_model_and_encoders/CCET/model1GPA/label_encoder_employee_student.pkl'),
             'NOME_CURSO': joblib.load('model4GPA_model_and_encoders/CCET/model1GPA/label_encoder_Curso.pkl')
-        }
+        }    
 
         # Define as colunas numéricas e categóricas
         numerical_columns = ['CR_ATUAL','GPA1']
         categorical_columns = ['ingresso_atual', 'IsTheyBusinessperson', 'Categoria', 'SEXO', 'employee_student','NOME_CURSO']
         # Get the JSON data from the request
         data = request.json
-
+    
         # Create a DataFrame from the JSON data
         df = pd.DataFrame(data, index=[0])
          # Apply label encoding to categorical columns
@@ -936,23 +936,23 @@ def ccet_model1gpa_predict():
                 df[name] = le.transform(df[name])
             except ValueError as e:
                 print("error Unknown category in column "+name)
-                return jsonify({'error': f"Unknown category in column '{name}': {str(e)}"}), 400
+                return jsonify({'error': f"Unknown category in column '{name}': {str(e)}"}), 400  
         # Convert all non-categorical columns to float
         for column in numerical_columns:
              df[column] = df[column].astype(float)
-
+            
         # Print column types for debugging
         for column in df.columns:
             print(f"Column '{column}' has type: {type(df[column].iloc[0])}")
 
-
+ 
 
         # Select features for prediction
         X = df[numerical_columns + categorical_columns]
-
+            
         # Print the transformed DataFrame for debugging
-
-
+ 
+            
         y_pred = pipeline.predict(X)
         print(y_pred.tolist())
         # Return the predictions as JSON
@@ -1006,31 +1006,31 @@ def eng_model4gpa_predict():
                    'grade_eng_introduction']
         # Get the JSON data from the request
         data = request.json
-
+        
         # Create a DataFrame from the JSON data
         df = pd.DataFrame(data, index=[0])
-
+        
         # Apply label encoding to categorical columns
         for name, le in label_encoders.items():
             try:
                 df[name] = le.transform(df[name])
             except ValueError as e:
                 return jsonify({'error': f"Unknown category in column '{name}': {str(e)}"}), 400
-
+        
         # Convert all non-categorical columns to float
         for column in numerical_columns:
             df[column] = df[column].astype(float)
-
+        
         # Print column types for debugging
         for column in df.columns:
             print(f"Column '{column}' has type: {type(df[column].iloc[0])}")
-
+        
         # Select features for prediction
         X = df[numerical_columns + categorical_columns]
-
+        
         # Print the transformed DataFrame for debugging
         print(X)
-
+        
         y_pred = pipeline.predict(X)
         print("-----------------------------------------------------------")
         print(y_pred.tolist())
@@ -1042,7 +1042,7 @@ def eng_model4gpa_predict():
         full_error_message = f"{error_message}\nTraceback:\n{traceback_str}"
         print(full_error_message)
         return jsonify(error=full_error_message), 500
-
+    
 #-------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -1076,31 +1076,31 @@ def eng_model3gpa_predict():
                    'grade_eng_introduction']
         # Get the JSON data from the request
         data = request.json
-
+        
         # Create a DataFrame from the JSON data
         df = pd.DataFrame(data, index=[0])
-
+        
         # Apply label encoding to categorical columns
         for name, le in label_encoders.items():
             try:
                 df[name] = le.transform(df[name])
             except ValueError as e:
                 return jsonify({'error': f"Unknown category in column '{name}': {str(e)}"}), 400
-
+        
         # Convert all non-categorical columns to float
         for column in numerical_columns:
             df[column] = df[column].astype(float)
-
+        
         # Print column types for debugging
         for column in df.columns:
             print(f"Column '{column}' has type: {type(df[column].iloc[0])}")
-
+        
         # Select features for prediction
         X = df[numerical_columns + categorical_columns]
-
+        
         # Print the transformed DataFrame for debugging
         print(X)
-
+        
         y_pred = pipeline.predict(X)
         print("-----------------------------------------------------------")
         print(y_pred.tolist())
@@ -1148,31 +1148,31 @@ def eng_model2gpa_predict():
                    'grade_eng_introduction']
         # Get the JSON data from the request
         data = request.json
-
+        
         # Create a DataFrame from the JSON data
         df = pd.DataFrame(data, index=[0])
-
+        
         # Apply label encoding to categorical columns
         for name, le in label_encoders.items():
             try:
                 df[name] = le.transform(df[name])
             except ValueError as e:
                 return jsonify({'error': f"Unknown category in column '{name}': {str(e)}"}), 400
-
+        
         # Convert all non-categorical columns to float
         for column in numerical_columns:
             df[column] = df[column].astype(float)
-
+        
         # Print column types for debugging
         for column in df.columns:
             print(f"Column '{column}' has type: {type(df[column].iloc[0])}")
-
+        
         # Select features for prediction
         X = df[numerical_columns + categorical_columns]
-
+        
         # Print the transformed DataFrame for debugging
         print(X)
-
+        
         y_pred = pipeline.predict(X)
         print("-----------------------------------------------------------")
         print(y_pred.tolist())
@@ -1221,31 +1221,31 @@ def eng_model1gpa_predict():
         numerical_columns = ['CR_ATUAL', 'GPA1', 'grade_programming1', 'grade_calculus0', 'grade_eng_introduction']
         # Get the JSON data from the request
         data = request.json
-
+        
         # Create a DataFrame from the JSON data
         df = pd.DataFrame(data, index=[0])
-
+        
         # Apply label encoding to categorical columns
         for name, le in label_encoders.items():
             try:
                 df[name] = le.transform(df[name])
             except ValueError as e:
                 return jsonify({'error': f"Unknown category in column '{name}': {str(e)}"}), 400
-
+        
         # Convert all non-categorical columns to float
         for column in numerical_columns:
             df[column] = df[column].astype(float)
-
+        
         # Print column types for debugging
         for column in df.columns:
             print(f"Column '{column}' has type: {type(df[column].iloc[0])}")
-
+        
         # Select features for prediction
         X = df[numerical_columns + categorical_columns]
-
+        
         # Print the transformed DataFrame for debugging
         print(X)
-
+        
         y_pred = pipeline.predict(X)
         print("-----------------------------------------------------------")
         print(y_pred.tolist())
@@ -1257,7 +1257,7 @@ def eng_model1gpa_predict():
         full_error_message = f"{error_message}\nTraceback:\n{traceback_str}"
         print(full_error_message)
         return jsonify(error=full_error_message), 500
-
+    
 
 
 #-------------------------------------------------------------------------------------------------------------------------------
@@ -1277,7 +1277,7 @@ def trocarsenha():
 def senha():
     if 'user' in session:
         user = session['user']
-
+        
         if request.method == 'POST':
             data = request.get_json()  # Receber dados JSON
             if data is None:
@@ -1291,7 +1291,7 @@ def senha():
             if not nova_senha:
                 print('A nova senha não pode ser vazia.')
                 return redirect(url_for('trocarsenha'))
-
+            
             if  nova_senha != confirma_senha:
                 print('Senhas precisam ser iguais.')
                 return redirect(url_for('trocarsenha'))
@@ -1316,7 +1316,43 @@ def senha():
     else:
         return redirect(url_for('login_page'))
 
+@app.route('/ccet/csv/1')
+def ccet_csv_model1GPA():
+    if 'user' in session:
+        user = session['user']
+        email = session['email']
+        return render_template('CCET/model1GPA/CSV_CCET1.html', user=user, email=email)
+    else:
+        return redirect(url_for('login_page'))
 
+@app.route('/ccet/csv/2')
+def ccet_csv_model2GPA():
+    if 'user' in session:
+        user = session['user']
+        email = session['email']
+        return render_template('CCET/model2GPA/CSV_CCET1.html', user=user, email=email)
+    else:
+        return redirect(url_for('login_page'))
+
+@app.route('/ccet/csv/3')
+def ccet_csv_model3GPA():
+    if 'user' in session:
+        user = session['user']
+        email = session['email']
+        return render_template('CCET/model3GPA/CSV_CCET1.html', user=user, email=email)
+    else:
+        return redirect(url_for('login_page'))
+
+
+@app.route('/ccet/csv/4')
+def ccet_csv_model4GPA():
+    if 'user' in session:
+        user = session['user']
+        email = session['email']
+        return render_template('CCET/model4GPA/CSV_CCET1.html', user=user, email=email)
+    else:
+        return redirect(url_for('login_page'))
 
 if __name__ == '__main__':
     app.run(debug=True)
+
