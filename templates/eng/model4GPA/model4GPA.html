@@ -76,6 +76,11 @@
                 <option value="employee student">Employee student</option>
             </select>
             
+            <label for="bolsista">Bolsista:</label>
+            <select id="bolsista" required v-model="formData.bolsista">
+                <option value="bolsista">Bolsista</option>
+                <option value="naobolsista">Não-bolsista</option>
+            </select>
 
             <button type="submit">Enviar</button>
         </form>

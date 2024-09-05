@@ -11,7 +11,7 @@
 <body>
     <div id="app">
         <h1>CCET Model 3 GPA Prediction Form</h1>
-        <h2>Accuracy: 90%</h2>
+        <h2>Accuracy: 88%</h2>
         <form @submit.prevent="submitForm">
             <label for="ingresso_atual">Ingresso Atual:</label>
             <select id="ingresso_atual" required v-model="formData.ingresso_atual">
@@ -66,6 +66,12 @@
             <select id="employee_student" required v-model="formData.employee_student">
                 <option value="non-employee student">Non-employee student</option>
                 <option value="employee student">Employee student</option>
+            </select>
+
+            <label for="bolsista">Bolsista:</label>
+            <select id="bolsista" required v-model="formData.bolsista">
+                <option value="bolsista">Bolsista</option>
+                <option value="naobolsista">Não-bolsista</option>
             </select>
             
 

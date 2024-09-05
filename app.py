@@ -110,12 +110,15 @@ def bsi_model4gpa_predict():
             'Categoria': joblib.load('model4GPA_model_and_encoders/BSI/model4GPA/label_encoder_Categoria.pkl'),
             'IsTheyBusinessperson': joblib.load('model4GPA_model_and_encoders/BSI/model4GPA/label_encoder_IsTheyBusinessperson.pkl'),
             'SEXO': joblib.load('model4GPA_model_and_encoders/BSI/model4GPA/label_encoder_SEXO.pkl'),
-            'employee_student': joblib.load('model4GPA_model_and_encoders/BSI/model4GPA/label_encoder_employee_student.pkl')
+            'employee_student': joblib.load('model4GPA_model_and_encoders/BSI/model4GPA/label_encoder_employee_student.pkl'),
+            'bolsista': joblib.load('model4GPA_model_and_encoders/BSI/model4GPA/label_encoder_bolsista.pkl'),
+            
+
         }
 
         # Define as colunas numéricas e categóricas
         numerical_columns = ['GPA1', 'GPA2', 'GPA3', 'GPA4', 'grade_programming1', 'grade_programming2', 'grade_basic_math', 'grade_calculus1', 'grade_linear_algebra', 'grade_logic', 'CR_ATUAL']
-        categorical_columns = ['ingresso_atual', 'IsTheyBusinessperson', 'Categoria', 'SEXO', 'employee_student']
+        categorical_columns = ['ingresso_atual', 'IsTheyBusinessperson', 'Categoria', 'SEXO', 'employee_student', 'bolsista']
         # Get the JSON data from the request
         data = request.json
         
@@ -179,11 +182,13 @@ def bsi_model3gpa_predict():
             'Categoria': joblib.load('model4GPA_model_and_encoders/BSI/model3GPA/label_encoder_Categoria.pkl'),
             'IsTheyBusinessperson': joblib.load('model4GPA_model_and_encoders/BSI/model3GPA/label_encoder_IsTheyBusinessperson.pkl'),
             'SEXO': joblib.load('model4GPA_model_and_encoders/BSI/model3GPA/label_encoder_SEXO.pkl'),
-            'employee_student': joblib.load('model4GPA_model_and_encoders/BSI/model3GPA/label_encoder_employee_student.pkl')
+            'employee_student': joblib.load('model4GPA_model_and_encoders/BSI/model3GPA/label_encoder_employee_student.pkl'),
+            'bolsista': joblib.load('model4GPA_model_and_encoders/BSI/model3GPA/label_encoder_bolsista.pkl')
+
         }
 
         # Define as colunas numéricas e categóricas
-        categorical_columns = [ 'ingresso_atual', 'Categoria', 'IsTheyBusinessperson', 'SEXO', 'employee_student']
+        categorical_columns = [ 'ingresso_atual', 'Categoria', 'IsTheyBusinessperson', 'SEXO', 'employee_student', 'bolsista']
         numerical_columns = ['CR_ATUAL', 'GPA1', 'GPA2', 'GPA3', 'grade_programming1', 'grade_programming2', 'grade_basic_math', 'grade_calculus1', 'grade_linear_algebra', 'grade_logic']
         # Get the JSON data from the request
         data = request.json
@@ -250,11 +255,13 @@ def bsi_model2gpa_predict():
             'Categoria': joblib.load('model4GPA_model_and_encoders/BSI/model2GPA/label_encoder_Categoria.pkl'),
             'IsTheyBusinessperson': joblib.load('model4GPA_model_and_encoders/BSI/model2GPA/label_encoder_IsTheyBusinessperson.pkl'),
             'SEXO': joblib.load('model4GPA_model_and_encoders/BSI/model2GPA/label_encoder_SEXO.pkl'),
-            'employee_student': joblib.load('model4GPA_model_and_encoders/BSI/model2GPA/label_encoder_employee_student.pkl')
+            'employee_student': joblib.load('model4GPA_model_and_encoders/BSI/model2GPA/label_encoder_employee_student.pkl'),
+            'bolsista': joblib.load('model4GPA_model_and_encoders/BSI/model2GPA/label_encoder_bolsista.pkl')
+
         }
 
         # Define as colunas numéricas e categóricas
-        categorical_columns = ['ingresso_atual', 'Categoria', 'IsTheyBusinessperson', 'SEXO', 'employee_student']
+        categorical_columns = ['ingresso_atual', 'Categoria', 'IsTheyBusinessperson', 'SEXO', 'employee_student', 'bolsista']
         numerical_columns = ['CR_ATUAL', 'GPA1', 'GPA2', 'grade_programming1', 'grade_programming2', 'grade_basic_math', 'grade_calculus1', 'grade_linear_algebra', 'grade_logic']
         # Get the JSON data from the request
         data = request.json
@@ -323,11 +330,13 @@ def bsi_model1gpa_predict():
             'Categoria': joblib.load('model4GPA_model_and_encoders/BSI/model1GPA/label_encoder_Categoria.pkl'),
             'IsTheyBusinessperson': joblib.load('model4GPA_model_and_encoders/BSI/model1GPA/label_encoder_IsTheyBusinessperson.pkl'),
             'SEXO': joblib.load('model4GPA_model_and_encoders/BSI/model1GPA/label_encoder_SEXO.pkl'),
-            'employee_student': joblib.load('model4GPA_model_and_encoders/BSI/model1GPA/label_encoder_employee_student.pkl')
+            'employee_student': joblib.load('model4GPA_model_and_encoders/BSI/model1GPA/label_encoder_employee_student.pkl'),
+            'bolsista': joblib.load('model4GPA_model_and_encoders/BSI/model1GPA/label_encoder_bolsista.pkl')
+
         }
 
         # Define as colunas numéricas e categóricas
-        categorical_columns = ['ingresso_atual', 'Categoria', 'IsTheyBusinessperson', 'SEXO', 'employee_student']
+        categorical_columns = ['ingresso_atual', 'Categoria', 'IsTheyBusinessperson', 'SEXO', 'employee_student', 'bolsista']
         numerical_columns = ['CR_ATUAL', 'GPA1', 'grade_programming1', 'grade_basic_math']
         # Get the JSON data from the request
         data = request.json
@@ -399,11 +408,13 @@ def mat_model4gpa_predict():
             'Categoria': joblib.load('model4GPA_model_and_encoders/mat/model4GPA/label_encoder_Categoria.pkl'),
             'IsTheyBusinessperson': joblib.load('model4GPA_model_and_encoders/mat/model4GPA/label_encoder_IsTheyBusinessperson.pkl'),
             'SEXO': joblib.load('model4GPA_model_and_encoders/mat/model4GPA/label_encoder_SEXO.pkl'),
-            'employee_student': joblib.load('model4GPA_model_and_encoders/mat/model4GPA/label_encoder_employee_student.pkl')
+            'employee_student': joblib.load('model4GPA_model_and_encoders/mat/model4GPA/label_encoder_employee_student.pkl'),
+            'bolsista': joblib.load('model4GPA_model_and_encoders/mat/model4GPA/label_encoder_bolsista.pkl'),
+
         }
 
         # Define as colunas numéricas e categóricas
-        categorical_columns = ['ingresso_atual', 'Categoria', 'IsTheyBusinessperson', 'SEXO', 'employee_student']
+        categorical_columns = ['ingresso_atual', 'Categoria', 'IsTheyBusinessperson', 'SEXO', 'employee_student', 'bolsista']
         numerical_columns = ['CR_ATUAL',  'GPA1', 'GPA2', 'GPA3', 'GPA4', 'grade_programming1', "grade_enviroment", 
                     'grade_math_foundation', 'grade_analytic_geometry', 'grade_geometry1', 'grade_calculus1']
         # Get the JSON data from the request
@@ -469,11 +480,13 @@ def mat_model3gpa_predict():
             'Categoria': joblib.load('model4GPA_model_and_encoders/mat/model3GPA/label_encoder_Categoria.pkl'),
             'IsTheyBusinessperson': joblib.load('model4GPA_model_and_encoders/mat/model3GPA/label_encoder_IsTheyBusinessperson.pkl'),
             'SEXO': joblib.load('model4GPA_model_and_encoders/mat/model3GPA/label_encoder_SEXO.pkl'),
-            'employee_student': joblib.load('model4GPA_model_and_encoders/mat/model3GPA/label_encoder_employee_student.pkl')
+            'employee_student': joblib.load('model4GPA_model_and_encoders/mat/model3GPA/label_encoder_employee_student.pkl'),
+            'bolsista': joblib.load('model4GPA_model_and_encoders/mat/model3GPA/label_encoder_bolsista.pkl'),
+
         }
 
         # Define as colunas numéricas e categóricas
-        categorical_columns = ['ingresso_atual', 'Categoria', 'IsTheyBusinessperson', 'SEXO', 'employee_student']
+        categorical_columns = ['ingresso_atual', 'Categoria', 'IsTheyBusinessperson', 'SEXO', 'employee_student', 'bolsista']
         numerical_columns = ['CR_ATUAL', 'GPA1', 'GPA2', 'GPA3', 'grade_programming1', "grade_enviroment", 
                     'grade_math_foundation', 'grade_analytic_geometry', 'grade_geometry1', 'grade_calculus1']
         # Get the JSON data from the request
@@ -541,11 +554,13 @@ def mat_model2gpa_predict():
             'Categoria': joblib.load('model4GPA_model_and_encoders/mat/model2GPA/label_encoder_Categoria.pkl'),
             'IsTheyBusinessperson': joblib.load('model4GPA_model_and_encoders/mat/model2GPA/label_encoder_IsTheyBusinessperson.pkl'),
             'SEXO': joblib.load('model4GPA_model_and_encoders/mat/model2GPA/label_encoder_SEXO.pkl'),
-            'employee_student': joblib.load('model4GPA_model_and_encoders/mat/model2GPA/label_encoder_employee_student.pkl')
+            'employee_student': joblib.load('model4GPA_model_and_encoders/mat/model2GPA/label_encoder_employee_student.pkl'),
+            'bolsista': joblib.load('model4GPA_model_and_encoders/mat/model2GPA/label_encoder_bolsista.pkl'),
+
         }
 
         # Define as colunas numéricas e categóricas
-        categorical_columns = ['ingresso_atual', 'Categoria', 'IsTheyBusinessperson', 'SEXO', 'employee_student']
+        categorical_columns = ['ingresso_atual', 'Categoria', 'IsTheyBusinessperson', 'SEXO', 'employee_student', 'bolsista']
         numerical_columns = ['GPA1', 'GPA2', 'grade_programming1', "grade_enviroment", 
                     'grade_math_foundation', 'grade_analytic_geometry', 'grade_geometry1', 'grade_calculus1']
         data = request.json
@@ -614,11 +629,13 @@ def mat_model1gpa_predict():
             'Categoria': joblib.load('model4GPA_model_and_encoders/mat/model1GPA/label_encoder_Categoria.pkl'),
             'IsTheyBusinessperson': joblib.load('model4GPA_model_and_encoders/mat/model1GPA/label_encoder_IsTheyBusinessperson.pkl'),
             'SEXO': joblib.load('model4GPA_model_and_encoders/mat/model1GPA/label_encoder_SEXO.pkl'),
-            'employee_student': joblib.load('model4GPA_model_and_encoders/mat/model1GPA/label_encoder_employee_student.pkl')
+            'employee_student': joblib.load('model4GPA_model_and_encoders/mat/model1GPA/label_encoder_employee_student.pkl'),
+            'bolsista': joblib.load('model4GPA_model_and_encoders/mat/model1GPA/label_encoder_bolsista.pkl'),
+
         }
 
         # Define as colunas numéricas e categóricas
-        categorical_columns = ['ingresso_atual', 'Categoria', 'IsTheyBusinessperson', 'SEXO', 'employee_student']
+        categorical_columns = ['ingresso_atual', 'Categoria', 'IsTheyBusinessperson', 'SEXO', 'employee_student', 'bolsista']
         numerical_columns = ['CR_ATUAL', 'GPA1', 'grade_programming1', "grade_enviroment", 
                     'grade_math_foundation', 'grade_analytic_geometry']
         # Get the JSON data from the request
@@ -718,12 +735,14 @@ def ccet_model4gpa_predict():
             'IsTheyBusinessperson': joblib.load('model4GPA_model_and_encoders/CCET/model4GPA/label_encoder_IsTheyBusinessperson.pkl'),
             'SEXO': joblib.load('model4GPA_model_and_encoders/CCET/model4GPA/label_encoder_SEXO.pkl'),
             'employee_student': joblib.load('model4GPA_model_and_encoders/CCET/model4GPA/label_encoder_employee_student.pkl'),
-            'NOME_CURSO': joblib.load('model4GPA_model_and_encoders/CCET/model4GPA/label_encoder_Curso.pkl')
+            'NOME_CURSO': joblib.load('model4GPA_model_and_encoders/CCET/model4GPA/label_encoder_Curso.pkl'),
+            'bolsista': joblib.load('model4GPA_model_and_encoders/CCET/model4GPA/label_encoder_bolsista.pkl')
+
         }    
 
         # Define as colunas numéricas e categóricas
         numerical_columns = ['CR_ATUAL','GPA1', 'GPA2', 'GPA3', 'GPA4']
-        categorical_columns = ['ingresso_atual', 'IsTheyBusinessperson', 'Categoria', 'SEXO', 'employee_student','NOME_CURSO']
+        categorical_columns = ['ingresso_atual', 'IsTheyBusinessperson', 'Categoria', 'SEXO', 'employee_student','NOME_CURSO', 'bolsista']
         # Get the JSON data from the request
         data = request.json
     
@@ -785,12 +804,14 @@ def ccet_model3gpa_predict():
             'SEXO': joblib.load('model4GPA_model_and_encoders/CCET/model3GPA/label_encoder_SEXO.pkl'),
             'employee_student': joblib.load('model4GPA_model_and_encoders/CCET/model3GPA/label_encoder_employee_student.pkl'),
             'NOME_CURSO': joblib.load('model4GPA_model_and_encoders/CCET/model3GPA/label_encoder_Curso.pkl'),
-            'ingresso_atual': joblib.load('model4GPA_model_and_encoders/CCET/model3GPA/label_encoder_ingresso_atual.pkl')
+            'ingresso_atual': joblib.load('model4GPA_model_and_encoders/CCET/model3GPA/label_encoder_ingresso_atual.pkl'),
+            'bolsista': joblib.load('model4GPA_model_and_encoders/CCET/model3GPA/label_encoder_bolsista.pkl')
+
         }    
 
         # Define as colunas numéricas e categóricas
         numerical_columns = ['CR_ATUAL','GPA1', 'GPA2', 'GPA3']
-        categorical_columns = ['ingresso_atual', 'IsTheyBusinessperson', 'Categoria', 'SEXO', 'employee_student','NOME_CURSO']
+        categorical_columns = ['ingresso_atual', 'IsTheyBusinessperson', 'Categoria', 'SEXO', 'employee_student','NOME_CURSO', 'bolsista']
         # Get the JSON data from the request
         data = request.json
     
@@ -852,12 +873,14 @@ def ccet_model2gpa_predict():
             'IsTheyBusinessperson': joblib.load('model4GPA_model_and_encoders/CCET/model2GPA/label_encoder_IsTheyBusinessperson.pkl'),
             'SEXO': joblib.load('model4GPA_model_and_encoders/CCET/model2GPA/label_encoder_SEXO.pkl'),
             'employee_student': joblib.load('model4GPA_model_and_encoders/CCET/model2GPA/label_encoder_employee_student.pkl'),
-            'NOME_CURSO': joblib.load('model4GPA_model_and_encoders/CCET/model2GPA/label_encoder_Curso.pkl')
+            'NOME_CURSO': joblib.load('model4GPA_model_and_encoders/CCET/model2GPA/label_encoder_Curso.pkl'),
+            'bolsista': joblib.load('model4GPA_model_and_encoders/CCET/model2GPA/label_encoder_bolsista.pkl')
+
         }    
 
         # Define as colunas numéricas e categóricas
         numerical_columns = ['CR_ATUAL','GPA1', 'GPA2']
-        categorical_columns = ['ingresso_atual', 'IsTheyBusinessperson', 'Categoria', 'SEXO', 'employee_student','NOME_CURSO']
+        categorical_columns = ['ingresso_atual', 'IsTheyBusinessperson', 'Categoria', 'SEXO', 'employee_student','NOME_CURSO', 'bolsista']
         # Get the JSON data from the request
         data = request.json
     
@@ -919,12 +942,14 @@ def ccet_model1gpa_predict():
             'IsTheyBusinessperson': joblib.load('model4GPA_model_and_encoders/CCET/model1GPA/label_encoder_IsTheyBusinessperson.pkl'),
             'SEXO': joblib.load('model4GPA_model_and_encoders/CCET/model1GPA/label_encoder_SEXO.pkl'),
             'employee_student': joblib.load('model4GPA_model_and_encoders/CCET/model1GPA/label_encoder_employee_student.pkl'),
-            'NOME_CURSO': joblib.load('model4GPA_model_and_encoders/CCET/model1GPA/label_encoder_Curso.pkl')
+            'NOME_CURSO': joblib.load('model4GPA_model_and_encoders/CCET/model1GPA/label_encoder_Curso.pkl'),
+            'bolsista': joblib.load('model4GPA_model_and_encoders/CCET/model1GPA/label_encoder_bolsista.pkl')
+
         }    
 
         # Define as colunas numéricas e categóricas
         numerical_columns = ['CR_ATUAL','GPA1']
-        categorical_columns = ['ingresso_atual', 'IsTheyBusinessperson', 'Categoria', 'SEXO', 'employee_student','NOME_CURSO']
+        categorical_columns = ['ingresso_atual', 'IsTheyBusinessperson', 'Categoria', 'SEXO', 'employee_student','NOME_CURSO', 'bolsista']
         # Get the JSON data from the request
         data = request.json
     
@@ -997,11 +1022,13 @@ def eng_model4gpa_predict():
             'Categoria': joblib.load('model4GPA_model_and_encoders/eng/model4GPA/label_encoder_Categoria.pkl'),
             'IsTheyBusinessperson': joblib.load('model4GPA_model_and_encoders/eng/model4GPA/label_encoder_IsTheyBusinessperson.pkl'),
             'SEXO': joblib.load('model4GPA_model_and_encoders/eng/model4GPA/label_encoder_SEXO.pkl'),
-            'employee_student': joblib.load('model4GPA_model_and_encoders/eng/model4GPA/label_encoder_employee_student.pkl')
+            'employee_student': joblib.load('model4GPA_model_and_encoders/eng/model4GPA/label_encoder_employee_student.pkl'),
+            'bolsista': joblib.load('model4GPA_model_and_encoders/eng/model4GPA/label_encoder_bolsista.pkl'),
+
         }
 
         # Define as colunas numéricas e categóricas
-        categorical_columns = ['ingresso_atual', 'Categoria', 'IsTheyBusinessperson', 'SEXO', 'employee_student']
+        categorical_columns = ['ingresso_atual', 'Categoria', 'IsTheyBusinessperson', 'SEXO', 'employee_student', 'bolsista']
         numerical_columns = ['CR_ATUAL',  'GPA1', 'GPA2', 'GPA3', 'GPA4','grade_programming1', 'grade_calculus0','grade_calculus1', 'grade_linear_algebra',
                    'grade_eng_introduction']
         # Get the JSON data from the request
@@ -1067,11 +1094,13 @@ def eng_model3gpa_predict():
             'Categoria': joblib.load('model4GPA_model_and_encoders/eng/model3GPA/label_encoder_Categoria.pkl'),
             'IsTheyBusinessperson': joblib.load('model4GPA_model_and_encoders/eng/model3GPA/label_encoder_IsTheyBusinessperson.pkl'),
             'SEXO': joblib.load('model4GPA_model_and_encoders/eng/model3GPA/label_encoder_SEXO.pkl'),
-            'employee_student': joblib.load('model4GPA_model_and_encoders/eng/model3GPA/label_encoder_employee_student.pkl')
+            'employee_student': joblib.load('model4GPA_model_and_encoders/eng/model3GPA/label_encoder_employee_student.pkl'),
+            'bolsista': joblib.load('model4GPA_model_and_encoders/eng/model3GPA/label_encoder_bolsista.pkl'),
+
         }
 
         # Define as colunas numéricas e categóricas
-        categorical_columns = ['ingresso_atual', 'Categoria', 'IsTheyBusinessperson', 'SEXO', 'employee_student']
+        categorical_columns = ['ingresso_atual', 'Categoria', 'IsTheyBusinessperson', 'SEXO', 'employee_student', 'bolsista']
         numerical_columns = ['CR_ATUAL',  'GPA1', 'GPA2', 'GPA3','grade_programming1', 'grade_calculus0','grade_calculus1', 'grade_linear_algebra',
                    'grade_eng_introduction']
         # Get the JSON data from the request
@@ -1139,11 +1168,13 @@ def eng_model2gpa_predict():
             'Categoria': joblib.load('model4GPA_model_and_encoders/eng/model2GPA/label_encoder_Categoria.pkl'),
             'IsTheyBusinessperson': joblib.load('model4GPA_model_and_encoders/eng/model2GPA/label_encoder_IsTheyBusinessperson.pkl'),
             'SEXO': joblib.load('model4GPA_model_and_encoders/eng/model2GPA/label_encoder_SEXO.pkl'),
-            'employee_student': joblib.load('model4GPA_model_and_encoders/eng/model2GPA/label_encoder_employee_student.pkl')
+            'employee_student': joblib.load('model4GPA_model_and_encoders/eng/model2GPA/label_encoder_employee_student.pkl'),
+            'bolsista': joblib.load('model4GPA_model_and_encoders/eng/model2GPA/label_encoder_bolsista.pkl'),
+
         }
 
         # Define as colunas numéricas e categóricas
-        categorical_columns = ['ingresso_atual', 'Categoria', 'IsTheyBusinessperson', 'SEXO', 'employee_student']
+        categorical_columns = ['ingresso_atual', 'Categoria', 'IsTheyBusinessperson', 'SEXO', 'employee_student', 'bolsista']
         numerical_columns = ['CR_ATUAL',  'GPA1', 'GPA2', 'grade_programming1', 'grade_calculus0','grade_calculus1', 'grade_linear_algebra',
                    'grade_eng_introduction']
         # Get the JSON data from the request
@@ -1213,11 +1244,13 @@ def eng_model1gpa_predict():
             'Categoria': joblib.load('model4GPA_model_and_encoders/eng/model1GPA/label_encoder_Categoria.pkl'),
             'IsTheyBusinessperson': joblib.load('model4GPA_model_and_encoders/eng/model1GPA/label_encoder_IsTheyBusinessperson.pkl'),
             'SEXO': joblib.load('model4GPA_model_and_encoders/eng/model1GPA/label_encoder_SEXO.pkl'),
-            'employee_student': joblib.load('model4GPA_model_and_encoders/eng/model1GPA/label_encoder_employee_student.pkl')
+            'employee_student': joblib.load('model4GPA_model_and_encoders/eng/model1GPA/label_encoder_employee_student.pkl'),
+            'bolsista': joblib.load('model4GPA_model_and_encoders/eng/model1GPA/label_encoder_bolsista.pkl'),
+
         }
 
         # Define as colunas numéricas e categóricas
-        categorical_columns = ['ingresso_atual', 'Categoria', 'IsTheyBusinessperson', 'SEXO', 'employee_student']
+        categorical_columns = ['ingresso_atual', 'Categoria', 'IsTheyBusinessperson', 'SEXO', 'employee_student', 'bolsista']
         numerical_columns = ['CR_ATUAL', 'GPA1', 'grade_programming1', 'grade_calculus0', 'grade_eng_introduction']
         # Get the JSON data from the request
         data = request.json

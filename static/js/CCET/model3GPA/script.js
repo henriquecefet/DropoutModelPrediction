@@ -17,7 +17,8 @@ new Vue({
             grade_linear_algebra: '',
             employee_student: '',
             NOME_CURSO: '',
-            CR_ATUAL: ''
+            CR_ATUAL: '',
+            bolsista: ''
         },
         prediction: "<p>Make a prediction</P>"
     },

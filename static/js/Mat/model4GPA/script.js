@@ -17,7 +17,8 @@ new Vue({
             grade_enviroment: '',     
             grade_math_foundation: '', 
             grade_analytic_geometry: '',
-            employee_student: ''
+            employee_student: '',
+            bolsista: ''
         },
         prediction: "<p>Make a prediction</P>"    
     },
