@@ -1363,7 +1363,7 @@ def ccet_csv_model2GPA():
     if 'user' in session:
         user = session['user']
         email = session['email']
-        return render_template('CCET/model2GPA/CSV_CCET1.html', user=user, email=email)
+        return render_template('CCET/model2GPA/CSV_CCET2.html', user=user, email=email)
     else:
         return redirect(url_for('login_page'))
 
@@ -1372,7 +1372,7 @@ def ccet_csv_model3GPA():
     if 'user' in session:
         user = session['user']
         email = session['email']
-        return render_template('CCET/model3GPA/CSV_CCET1.html', user=user, email=email)
+        return render_template('CCET/model3GPA/CSV_CCET3.html', user=user, email=email)
     else:
         return redirect(url_for('login_page'))
 
@@ -1382,7 +1382,7 @@ def ccet_csv_model4GPA():
     if 'user' in session:
         user = session['user']
         email = session['email']
-        return render_template('CCET/model4GPA/CSV_CCET1.html', user=user, email=email)
+        return render_template('CCET/model4GPA/CSV_CCET4.html', user=user, email=email)
     else:
         return redirect(url_for('login_page'))
 
