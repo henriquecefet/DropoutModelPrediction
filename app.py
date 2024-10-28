@@ -8,6 +8,10 @@ import joblib
 import traceback
 import mysql.connector
 from mysql.connector import Error
+from datetime import datetime
+import hashlib
+
+
 app = Flask(__name__, static_folder='static')
 
 # Definindo a chave secreta
@@ -15,7 +19,7 @@ app.secret_key = 'AAjANDKd4I'
 
 db_config = {
     'user': 'root',
-    'password': 'ursopanda',
+    'password': '',
     'host': '127.0.0.1',  # Apenas o endereço IP ou nome do host
     'port': 3306,  # Especificação separada da porta
     'database': 'sistema_predicao_evasao'
@@ -36,7 +40,9 @@ def login():
     print("Login")
     data = request.get_json()
     email = data.get('email')
-    senha = data.get('senha')
+    senha = hash_string(data.get('senha'))
+    senha_sessao = data.get('senha')
+    ip_usuario = request.remote_addr
 
     if not email or not senha:
         return make_response(jsonify({"message": "Email e senha são obrigatórios"}), 400)
@@ -52,8 +58,9 @@ def login():
             if user:
                 session['user'] = user  # Armazena o usuário na sessão
                 session['email'] = email
-                session['senha'] = senha
-
+                session['senha'] = senha_sessao
+                session['ip'] = ip_usuario
+                session['root'] = user['root']
                 return redirect(url_for('index'))
             else:
                 return make_response(jsonify({"message": "Email ou senha incorretos"}), 401)
@@ -71,7 +78,8 @@ def index():
     if 'user' in session:
         user = session['user']
         email = session['email']
-        return render_template('index.html', user=user, email=email)
+        root =  session['root']
+        return render_template('index.html', user=user, email=email, root = root)
     else:
         return redirect(url_for('login_page'))
 
@@ -150,6 +158,7 @@ def bsi_model4gpa_predict():
         print("-----------------------------------------------------------")
         print(y_pred.tolist())
         # Return the predictions as JSON
+        inserir_log_predicao( y_pred.tolist()[0], "Sistemas de Informação", data['matricula'])
         return jsonify({'prediction': y_pred.tolist()[0]})
     except Exception as e:
         error_message = f"Error: {str(e)}"
@@ -221,6 +230,7 @@ def bsi_model3gpa_predict():
         print("-----------------------------------------------------------")
         print(y_pred.tolist())
         # Return the predictions as JSON
+        inserir_log_predicao( y_pred.tolist()[0], "Sistemas de Informação", data['matricula'])
         return jsonify({'prediction': y_pred.tolist()[0]})
     except Exception as e:
         error_message = f"Error: {str(e)}"
@@ -294,6 +304,7 @@ def bsi_model2gpa_predict():
         print("-----------------------------------------------------------")
         print(y_pred.tolist())
         # Return the predictions as JSON
+        inserir_log_predicao( y_pred.tolist()[0], "Sistemas de Informação", data['matricula'])
         return jsonify({'prediction': y_pred.tolist()[0]})
     except Exception as e:
         error_message = f"Error: {str(e)}"
@@ -369,6 +380,7 @@ def bsi_model1gpa_predict():
         print("-----------------------------------------------------------")
         print(y_pred.tolist())
         # Return the predictions as JSON
+        inserir_log_predicao( y_pred.tolist()[0], "Sistemas de Informação", data['matricula'])
         return jsonify({'prediction': y_pred.tolist()[0]})
     except Exception as e:
         error_message = f"Error: {str(e)}"
@@ -448,6 +460,7 @@ def mat_model4gpa_predict():
         print("-----------------------------------------------------------")
         print(y_pred.tolist())
         # Return the predictions as JSON
+        inserir_log_predicao( y_pred.tolist()[0], "Matemática", data['matricula'])
         return jsonify({'prediction': y_pred.tolist()[0]})
     except Exception as e:
         error_message = f"Error: {str(e)}"
@@ -520,6 +533,7 @@ def mat_model3gpa_predict():
         print("-----------------------------------------------------------")
         print(y_pred.tolist())
         # Return the predictions as JSON
+        inserir_log_predicao( y_pred.tolist()[0], "Matemática", data['matricula'])
         return jsonify({'prediction': y_pred.tolist()[0]})
     except Exception as e:
         error_message = f"Error: {str(e)}"
@@ -593,6 +607,7 @@ def mat_model2gpa_predict():
         print("-----------------------------------------------------------")
         print(y_pred.tolist())
         # Return the predictions as JSON
+        inserir_log_predicao( y_pred.tolist()[0], "Matemática", data['matricula'])
         return jsonify({'prediction': y_pred.tolist()[0]})
     except Exception as e:
         error_message = f"Error: {str(e)}"
@@ -669,6 +684,7 @@ def mat_model1gpa_predict():
         print("-----------------------------------------------------------")
         print(y_pred.tolist())
         # Return the predictions as JSON
+        inserir_log_predicao( y_pred.tolist()[0], "Matemática", data['matricula'])
         return jsonify({'prediction': y_pred.tolist()[0]})
     except Exception as e:
         error_message = f"Error: {str(e)}"
@@ -745,7 +761,7 @@ def ccet_model4gpa_predict():
         categorical_columns = ['ingresso_atual', 'IsTheyBusinessperson', 'Categoria', 'SEXO', 'employee_student','NOME_CURSO', 'bolsista']
         # Get the JSON data from the request
         data = request.json
-    
+        curso = data['NOME_CURSO']
         # Create a DataFrame from the JSON data
         df = pd.DataFrame(data, index=[0])
          # Apply label encoding to categorical columns
@@ -774,6 +790,7 @@ def ccet_model4gpa_predict():
         y_pred = pipeline.predict(X)
         print(y_pred.tolist())
         # Return the predictions as JSON
+        inserir_log_predicao( y_pred.tolist()[0], curso, data['matricula'])
         return jsonify({'prediction': y_pred.tolist()[0]})
     except Exception as e:
             error_message = f"Error: {str(e)}"
@@ -814,7 +831,7 @@ def ccet_model3gpa_predict():
         categorical_columns = ['ingresso_atual', 'IsTheyBusinessperson', 'Categoria', 'SEXO', 'employee_student','NOME_CURSO', 'bolsista']
         # Get the JSON data from the request
         data = request.json
-    
+        curso = data['NOME_CURSO']
         # Create a DataFrame from the JSON data
         df = pd.DataFrame(data, index=[0])
          # Apply label encoding to categorical columns
@@ -843,6 +860,7 @@ def ccet_model3gpa_predict():
         y_pred = pipeline.predict(X)
         print(y_pred.tolist())
         # Return the predictions as JSON
+        inserir_log_predicao( y_pred.tolist()[0], curso, data['matricula'])
         return jsonify({'prediction': y_pred.tolist()[0]})
     except Exception as e:
             error_message = f"Error: {str(e)}"
@@ -883,7 +901,8 @@ def ccet_model2gpa_predict():
         categorical_columns = ['ingresso_atual', 'IsTheyBusinessperson', 'Categoria', 'SEXO', 'employee_student','NOME_CURSO', 'bolsista']
         # Get the JSON data from the request
         data = request.json
-    
+        curso = data['NOME_CURSO']
+
         # Create a DataFrame from the JSON data
         df = pd.DataFrame(data, index=[0])
          # Apply label encoding to categorical columns
@@ -912,6 +931,7 @@ def ccet_model2gpa_predict():
         y_pred = pipeline.predict(X)
         print(y_pred.tolist())
         # Return the predictions as JSON
+        inserir_log_predicao( y_pred.tolist()[0], curso, data['matricula'])
         return jsonify({'prediction': y_pred.tolist()[0]})
     except Exception as e:
             error_message = f"Error: {str(e)}"
@@ -952,7 +972,7 @@ def ccet_model1gpa_predict():
         categorical_columns = ['ingresso_atual', 'IsTheyBusinessperson', 'Categoria', 'SEXO', 'employee_student','NOME_CURSO', 'bolsista']
         # Get the JSON data from the request
         data = request.json
-    
+        curso = data['NOME_CURSO']
         # Create a DataFrame from the JSON data
         df = pd.DataFrame(data, index=[0])
          # Apply label encoding to categorical columns
@@ -981,6 +1001,7 @@ def ccet_model1gpa_predict():
         y_pred = pipeline.predict(X)
         print(y_pred.tolist())
         # Return the predictions as JSON
+        inserir_log_predicao( y_pred.tolist()[0], curso, data['matricula'])
         return jsonify({'prediction': y_pred.tolist()[0]})
     except Exception as e:
             error_message = f"Error: {str(e)}"
@@ -1033,7 +1054,7 @@ def eng_model4gpa_predict():
                    'grade_eng_introduction']
         # Get the JSON data from the request
         data = request.json
-        
+
         # Create a DataFrame from the JSON data
         df = pd.DataFrame(data, index=[0])
         
@@ -1062,6 +1083,7 @@ def eng_model4gpa_predict():
         print("-----------------------------------------------------------")
         print(y_pred.tolist())
         # Return the predictions as JSON
+        inserir_log_predicao( y_pred.tolist()[0], "Engenharia de Produção", data['matricula'])
         return jsonify({'prediction': y_pred.tolist()[0]})
     except Exception as e:
         error_message = f"Error: {str(e)}"
@@ -1134,6 +1156,7 @@ def eng_model3gpa_predict():
         print("-----------------------------------------------------------")
         print(y_pred.tolist())
         # Return the predictions as JSON
+        inserir_log_predicao( y_pred.tolist()[0], "Engenharia de Produção", data['matricula'])
         return jsonify({'prediction': y_pred.tolist()[0]})
     except Exception as e:
         error_message = f"Error: {str(e)}"
@@ -1208,6 +1231,7 @@ def eng_model2gpa_predict():
         print("-----------------------------------------------------------")
         print(y_pred.tolist())
         # Return the predictions as JSON
+        inserir_log_predicao( y_pred.tolist()[0], "Engenharia de Produção", data['matricula'])
         return jsonify({'prediction': y_pred.tolist()[0]})
     except Exception as e:
         error_message = f"Error: {str(e)}"
@@ -1283,6 +1307,7 @@ def eng_model1gpa_predict():
         print("-----------------------------------------------------------")
         print(y_pred.tolist())
         # Return the predictions as JSON
+        inserir_log_predicao( y_pred.tolist()[0], "Engenharia de Produção", data['matricula'])
         return jsonify({'prediction': y_pred.tolist()[0]})
     except Exception as e:
         error_message = f"Error: {str(e)}"
@@ -1316,8 +1341,8 @@ def senha():
             if data is None:
                 return jsonify({'success': False, 'message': 'Nenhum dado enviado'}), 400
 
-            nova_senha = data.get('nova_senha')
-            confirma_senha = data.get('confirma_senha')
+            nova_senha = hash_string(data.get('nova_senha'))
+            confirma_senha = hash_string(data.get('confirma_senha'))
             email = data.get('email')
 
             # Validação da nova senha (opcional)
@@ -1385,6 +1410,159 @@ def ccet_csv_model4GPA():
         return render_template('CCET/model4GPA/CSV_CCET4.html', user=user, email=email)
     else:
         return redirect(url_for('login_page'))
+    
+@app.route('/sobre')
+def about_page():
+    return render_template('sobre.html')
+
+@app.route('/logs')
+def log():
+    if 'user' in session:
+        user = session['user']
+        email = session['email']
+        return render_template('log.html', user=user, email=email)
+    else:
+        return redirect(url_for('login_page'))
+
+
+# Função para inserir dados na tabela log_predicao
+def inserir_log_predicao(predicao, curso, matricula):
+    # Traduz o valor da predição
+    if predicao == 0:
+        predicao_texto = "Provavelmente vai evadir"
+    elif predicao == 1:
+        predicao_texto = "Provavelmente vai se formar"
+    else:
+        raise ValueError("Valor de predição inválido. Use 0 ou 1.")
+    
+    # Obter data e hora atual
+    data_atual = datetime.now()
+    
+    try:
+        # Estabelece a conexão
+        connection = create_connection()
+        cursor = connection.cursor()
+
+        # Query SQL para inserir dados
+        sql = """
+        INSERT INTO log_predicao (data, predicao, curso, usuario, ip_usuario, matricula)
+        VALUES (%s, %s, %s, %s, %s, %s)
+        """
+        valores = (data_atual, predicao_texto, curso, session['email'], session['ip'], matricula)
+
+        # Executa a query
+        cursor.execute(sql, valores)
+
+        # Confirma a inserção no banco de dados
+        connection.commit()
+        print(f"Registro inserido com sucesso: {cursor.rowcount} linha(s) afetada(s).")
+    
+    except mysql.connector.Error as err:
+        print(f"Erro: {err}")
+    
+    finally:
+        # Fecha o cursor e a conexão
+        if cursor:
+            cursor.close()
+        if connection:
+            connection.close()
+
+@app.route('/pegar_logs', methods=['GET'])
+def buscar_log_predicao_json():
+    if 'user' in session:
+        user = session['user']
+        email = session['email']
+        try:
+            # Estabelece a conexão
+            connection = create_connection()
+            cursor = connection.cursor(dictionary=True)  # Retorna as linhas como dicionários
+
+            # Query SQL para buscar todos os dados
+            sql = "SELECT * FROM log_predicao"
+            cursor.execute(sql)
+
+            # Busca todos os registros
+            resultados = cursor.fetchall()
+
+            # Retorna os resultados usando jsonify
+            return jsonify(resultados)
+    
+        except mysql.connector.Error as err:
+            return jsonify({"erro": str(err)}), 500
+    
+        finally:
+            # Fecha o cursor e a conexão
+            if cursor:
+                cursor.close()
+            if connection:
+                connection.close()
+    else:
+        return redirect(url_for('login_page'))
+
+@app.route('/novousuario')
+def page_novousuario():
+    if 'user' in session:
+        user = session['user']
+        email = session['email']
+        root = session['root']
+        return render_template('novousuario.html', user=user, email=email, root=root )
+    else:
+        return redirect(url_for('login_page'))
+    
+@app.route('/criar_novo_usuario', methods=['POST'])
+def criar_novo_usuario():
+    if 'user' in session:
+        user = session['user']
+        
+        if request.method == 'POST':
+            data = request.get_json()  # Receber dados JSON
+            if data is None:
+                return jsonify({'success': False, 'message': 'Nenhum dado enviado'}), 400
+            
+            print(data)
+            nova_senha = hash_string(data.get('nu_nova_senha'))
+            confirma_senha = hash_string(data.get('nu_confirma_senha'))
+            email = data.get('nu_email')
+
+            # Validação da nova senha (opcional)
+            if not nova_senha:
+                print('A nova senha não pode ser vazia.')
+                return redirect(url_for('page_novousuario'))
+            
+            if  nova_senha != confirma_senha:
+                print('Senhas precisam ser iguais.')
+                return redirect(url_for('page_novousuario'))
+
+
+            try:
+                conn = create_connection()
+                cursor = conn.cursor()
+                update_query = "INSERT INTO usuario (email, senha, root)  VALUES (%s, %s, %s)"
+                cursor.execute(update_query, (email, nova_senha, 0))
+                conn.commit()
+                print('Usuário criado com sucesso!')
+            except mysql.connector.Error as err:
+                print(f'Erro ao atualizar a senha: {err}')
+            finally:
+                cursor.close()
+                conn.close()
+
+            response = make_response(jsonify({'success': True, 'message': 'Usuário criado com sucesso!'}), 200)
+            return response
+        return render_template('trocarsenha.html', user=user, email=email)
+    else:
+        return redirect(url_for('login_page'))    
+
+
+# Função para fazer o hash de uma string
+def hash_string(text, algorithm='sha256'):
+    # Cria o objeto de hash com o algoritmo especificado
+    hash_obj = hashlib.new(algorithm)
+    # Codifica a string em bytes e faz o hash
+    hash_obj.update(text.encode('utf-8'))
+    # Retorna o hash hexadecimal em maiúsculas
+    return hash_obj.hexdigest().upper()
+
 
 if __name__ == '__main__':
     app.run(debug=True)
