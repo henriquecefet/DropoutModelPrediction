@@ -17,27 +17,32 @@
 <body>
     <div id="app">
         <h1>Sistema de Predição de Evasão do CCET/UNIRIO</h1>
-        <h2>Trocar sua senha do sistema</h2>
-        <form @submit.prevent="trocarSenha" id="trocar-senha-form">
+        <h2>Criar novo usuário</h2>
+        {% if root == '1' %}
+   
+        <form @submit.prevent="submitForm">
             
 
-            <label for="email">E-mail:</label>
-            <input type="text" id="email"  value = '{{ email }}'  v-model="email" required>
+            <label for="nu_email">E-mail do novo usuário:</label>
+            <input type="text" id="nu_email"   v-model="nu_email" required>
 
-            <label for="novaSenha">Senha:</label>
-            <input type="password" id="novaSenha"   value = '{{ senha }}' v-model="novaSenha" required>
+            <label for="nu_novaSenha">Senha do novo usuário:</label>
+            <input type="password" id="nu_novaSenha"   v-model="nu_novaSenha" required>
 
-            <label for="confirmaSenha">Confirmar senha:</label>
-            <input type="password" id="confirmaSenha"   value = '{{ senha }}' v-model="confirmaSenha" required>
+            <label for="nu_confirmaSenha">Confirmar senha:</label>
+            <input type="password" id="nu_confirmaSenha"    v-model="nu_confirmaSenha" required>
             
             <button type="submit">Enviar</button>
-        </form> 
+        </form>
+        {% else %}
+        <p>Você não tem permissão para criar novos usuários.</p>
+        {% endif %} 
         <footer id="footer">
             {{ email }}
             <a href="/trocarsenha">Trocar a senha</a>
         </footer>
         </div>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/trocarsenha.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/novousuario.js') }}"></script>
 
 </body>
 </html>

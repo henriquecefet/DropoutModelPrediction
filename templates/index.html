@@ -6,6 +6,11 @@
     <title>Previsão de Evasão Universitária</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
 
+    <link rel="stylesheet" href="https://satccet.uniriotec.br/ccet/barrasccet.css" media="screen">
+    <script defer="defer" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer="defer" src="https://satccet.uniriotec.br/ccet/barrasccet.js" type="text/javascript"></script>
+    <script defer="defer" src="https://barra.brasil.gov.br/barra_2.0.js" type="text/javascript"></script>
+
 </head>
 <body>
     <div id="app">
@@ -20,6 +25,16 @@
         <div v-html="modelos[1].html"></div>
         <div v-html="modelos[2].html"></div>
         <div v-html="modelos[3].html"></div>
+
+        <a href="/logs">Acesse os logs de predição</a>
+
+
+        {% if root == '1' %}
+        <a href="{{ url_for('page_novousuario') }}">Criar novo usuário</a>
+        {% else %}
+        <p>Você não tem permissão para criar novos usuários.</p>
+        {% endif %}
+
       
 
     </div>

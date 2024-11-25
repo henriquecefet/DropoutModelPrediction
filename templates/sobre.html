@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Previsão de Evasão Universitária</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/ccet/style.css') }}">
+
+    <link rel="stylesheet" href="https://satccet.uniriotec.br/ccet/barrasccet.css" media="screen">
+    <script defer="defer" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer="defer" src="https://satccet.uniriotec.br/ccet/barrasccet.js" type="text/javascript"></script>
+    <script defer="defer" src="https://barra.brasil.gov.br/barra_2.0.js" type="text/javascript"></script>
+
+</head>
+<body>
+    <div id="app">
+        <h1>Predição de Evasão de Alunos do CCET usando IA</h1>
+        <p>Este sistema foi desenvolvido no contexto da pesquisa de mestrado de Henrique Rodrigues,
+             orientado pela professora Laura Moares e coorientado pelo professor Reinaldo Alvares</p>
+
+        
+         <p> Esse sistema utilizou o algritmo Gradient Boosting com dados acadêmicos, de bolsa e da vida profissional de ex-alunos do
+            CCET para identificar alunos atuais em risco de evasão, possibilitando aos gestores acadêmicos e professores a ajudar
+            a esses alunos a não evadir, estimulando aos alunos continuar os estudos para se formarem.
+         </p>
+        
+         <h2>Artigos publicados da pesquisa</h2>
+         <ul>
+           <li>
+             Rodrigues, H.; Santiago, E.; Wanderley, G.; Moraes, L.; Eduardo Mello, C.; Alvares, R. and Santos, R. (2024). Artificial Intelligence Algorithms to Predict College Students’ Dropout: A Systematic Mapping Study. In <em>Proceedings of the 16th International Conference on Agents and Artificial Intelligence - Volume 3: ICAART</em>; ISBN 978-989-758-680-4; ISSN 2184-433X, SciTePress, pages 344-351. DOI: <a href="https://doi.org/10.5220/0012348000003636" target="_blank">10.5220/0012348000003636</a>.
+           </li>
+           <li>
+             RODRIGUES, Henrique S. et al. Predicting Student Dropout on the Information Systems Undergraduate Program of UNIRIO Using Decision Trees. In: <em>WORKSHOP SOBRE EDUCAÇÃO EM COMPUTAÇÃO (WEI), 32.</em>, 2024, Brasília/DF. <em>Anais [...].</em> Porto Alegre: Sociedade Brasileira de Computação, 2024. p. 588-598. ISSN 2595-6175. DOI: <a href="https://doi.org/10.5753/wei.2024.2429" target="_blank">https://doi.org/10.5753/wei.2024.2429</a>.
+           </li>
+         </ul>
+         
+
+      
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Previsão de Evasão Universitária</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- Incluindo as barras da UNIRIO -->
+    <link rel="stylesheet" href="https://satccet.uniriotec.br/ccet/barrasccet.css" media="screen">
+    <script defer="defer" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer="defer" src="https://satccet.uniriotec.br/ccet/barrasccet.js" type="text/javascript"></script>
+    <script defer="defer" src="https://barra.brasil.gov.br/barra_2.0.js" type="text/javascript"></script>
+
+</head>
+<body>
+    <div id="app">
+      <table id="logs-table" border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Usuário</th>
+                <th>Data</th>
+                <th>Matrícula</th>
+                <th>Curso</th>
+                <th>Predição</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Dados serão inseridos aqui dinamicamente -->
+        </tbody>
+    </table>
+
+    <button id="export-csv">Exportar para CSV</button> <!-- Botão de exportação -->
+
+      </div>
+      
+
+        
+
+    <footer id="footer">
+        {{ email }}
+        <a href="/trocarsenha">Trocar a senha</a>
+    </footer>
+
+    <!-- Scripts Vue.js e JS do projeto -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/log.js') }}"></script>
+</body>
+</html>
+
